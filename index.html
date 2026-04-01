@@ -3,68 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R. Ávalos Cerámicos</title>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <title>R. Ávalos | Cerámica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <h1>R. ÁVALOS CERÁMICOS</h1>
-    <p>Arte en cada pieza</p>
+  <header class="hero">
+    <div class="hero-content">
+      <img src="images/logo.jpg" alt="Logo R. Ávalos" class="main-logo">
+      <h1 class="brand-name">R. ÁVALOS</h1>
+      <span class="subtitle">CERÁMICA ARTESANAL</span>
+      <div class="line"></div>
+      <p>Piezas únicas.</p>
+      <a href="#productos" class="btn-gold">Explorar Colección</a>
+    </div>
   </header>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="#">Inicio</a>
-    <a href="#productos">Productos</a>
-    <a href="#contacto">Contacto</a>
+  <nav class="navbar">
+    <div class="nav-links">
+      <a href="#">Inicio</a>
+      <a href="#nosotros">Nuestra Esencia</a>
+      <a href="#productos">Catálogo</a>
+      <a href="#contacto">Contacto</a>
+    </div>
   </nav>
 
-  <!-- PRODUCTOS -->
-  <section id="productos">
-    <h2>Nuestro Catálogo</h2>
+  <section id="nosotros" class="info-section">
+    <div class="container">
+      <h2>El Arte de la Tierra</h2>
+      <p>En <strong>R. Ávalos Cerámicos</strong>, cada pieza es moldeada individualmente por manos expertas en Dolores Hidalgo. Fusionamos la tradición ancestral con un diseño contemporáneo y exclusivo.</p>
+    </div>
+  </section>
 
-    <div class="productos">
+  <section id="productos" class="catalog">
+    <h2 class="section-title">Colección Exclusiva</h2>
+    <div class="grid-productos">
 
-      <!-- Producto 1 -->
-      <div class="card">
-        <img src="images/plato.jpg" alt="Plato">
-        <h3>Plato artesanal</h3>
-        <p class="precio">$250 MXN</p>
-        <p>Cerámica sin plomo.</p>
-        <a class="btn" href="https://wa.me/524181187377?text=Hola%20quiero%20el%20plato%20artesanal%20de%20$250" target="_blank">
-          Comprar
-        </a>
+      <div class="luxury-card">
+        <div class="img-container">
+          <img src="images/plato.jpg" alt="Plato Artesanal">
+          <div class="badge">Nuevo</div>
+        </div>
+        <div class="card-info">
+          <h3>Plato de Autor</h3>
+          <p class="desc">Cerámica de alta temperatura.</p>
+          <p class="price">$250 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20adquirir%20el%20Plato%20de%20Autor." target="_blank">Adquirir</a>
+        </div>
       </div>
 
-      <!-- Producto 2 -->
-      <div class="card">
-        <img src="images/florero.jpg" alt="Florero">
-        <h3>Florero decorativo</h3>
-        <p class="precio">$350 MXN</p>
-        <p>Acabado brillante.</p>
-        <a class="btn" href="https://wa.me/524181187377?text=Hola%20quiero%20el%20florero%20decorativo%20de%20$350" target="_blank">
-          Comprar
-        </a>
+      <div class="luxury-card">
+        <div class="img-container">
+          <img src="images/florero.jpg" alt="Florero Decorativo">
+        </div>
+        <div class="card-info">
+          <h3>Florero Gala</h3>
+          <p class="desc">Acabado vitrificado en relieve.</p>
+          <p class="price">$350 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Vaso%20Gala%20de%20su%20catálogo." target="_blank">Adquirir</a>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>¿Te interesa una pieza? Escríbenos por WhatsApp</p>
-    <a class="btn" href="https://wa.me/524181187377?text=Hola%20quiero%20información%20sobre%20sus%20productos" target="_blank">
-      Enviar mensaje
-    </a>
+  <section id="contacto" class="contact-strip">
+    <div class="container">
+      <h2>Atención Personalizada</h2>
+      <p>Diseños a medida y pedidos especiales.</p>
+      <a class="btn-whatsapp" href="https://wa.me/524181187377?text=Hola,%20vi%20tu%20catálogo%20en%20línea%20y%20me%20gustaría%20solicitar%20información%20personalizada." target="_blank">
+        Consultar por WhatsApp
+      </a>
+    </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <p>© 2026 R. Ávalos Cerámicos</p>
+    <div class="footer-content">
+      <p>&copy; 2026 R. ÁVALOS CERÁMICOS | Tu excelencia </p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/raul.avalosguerrero" target="_blank" class="social-btn fb">Facebook</a>
+        <a href="https://www.instagram.com/guerreroraulavalos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn ig">Instagram</a>
+      </div>
+    </div>
   </footer>
 
 </body>
