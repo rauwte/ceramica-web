@@ -1,8 +1,8 @@
-/* VARIABLES DE DISEÑO (¡Adiós negro, hola azul profesional!) */
+/* VARIABLES DE DISEÑO (Azul marino) */
 :root {
   --gold: #c5a059;
   --gold-glow: rgba(197, 160, 89, 0.3);
-  --dark-blue: #1a2a3a; /* Azul marino elegante y profesional */
+  --dark-blue: #1a2a3a; 
   --light: #fbfbfb;
   --text: #333;
   --font-luxury: 'Cinzel', serif;
@@ -22,7 +22,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* LOGO LOCAL */
 .main-logo {
   max-width: 120px;
   height: auto;
@@ -30,10 +29,9 @@ body {
   filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
 }
 
-/* HERO SECTION (Textura de fondo clara, texto en azul marino) */
+/* HERO SECTION */
 .hero {
   height: 100vh;
-  /* Degradado claro y una textura de cerámica de fondo */
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(245, 245, 245, 0.7)), 
               url('https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=2070') no-repeat center/cover;
   display: flex;
@@ -77,50 +75,6 @@ body {
   margin: 20px auto;
 }
 
-.hero p {
-  color: #555;
-  font-weight: 400;
-}
-
-/* NAVIGATION */
-.navbar {
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 18px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--dark-blue);
-  margin: 0 15px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 1px;
-  bottom: -5px;
-  left: 0;
-  background-color: var(--gold);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after { width: 100%; }
-.nav-links a:hover { color: var(--gold); }
-
 /* SECCIONES */
 section { padding: 80px 20px; text-align: center; }
 
@@ -135,12 +89,12 @@ h2 {
 .info-section { background: var(--light); }
 .info-section .container { max-width: 700px; margin: auto; line-height: 1.9; font-size: 1.1rem; color: #444; }
 
-/* GRID DE PRODUCTOS */
+/* GRID DE PRODUCTOS (Modo Mac o pantallas grandes) */
 .grid-productos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 25px;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 40px auto 0 auto;
 }
 
@@ -161,7 +115,7 @@ h2 {
 .img-container {
   position: relative;
   overflow: hidden;
-  height: 220px;
+  height: 240px;
 }
 
 .img-container img {
@@ -173,7 +127,6 @@ h2 {
 
 .luxury-card:hover img { transform: scale(1.1); }
 
-/* Badge en azul marino */
 .badge {
   position: absolute;
   top: 10px;
@@ -205,7 +158,6 @@ h2 {
   cursor: pointer;
 }
 
-/* Botón del Hero con estilo azul */
 .btn-gold {
   border: 1px solid var(--gold);
   color: var(--dark-blue);
@@ -216,10 +168,8 @@ h2 {
 .btn-gold:hover { 
   background: var(--gold); 
   color: white;
-  box-shadow: 0 0 15px var(--gold-glow);
 }
 
-/* Botones de compra en azul marino */
 .btn-buy {
   margin-top: 5px;
   background: var(--dark-blue);
@@ -244,10 +194,9 @@ h2 {
 .btn-whatsapp:hover { 
   background: #25d366; 
   color: white;
-  box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
 }
 
-/* FOOTER (En azul marino profundo) */
+/* FOOTER */
 footer {
   background: var(--dark-blue);
   color: rgba(255, 255, 255, 0.6);
@@ -282,16 +231,55 @@ footer {
 .social-btn.fb { background: #1877f2; }
 .social-btn.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
-.social-btn:hover {
-  transform: translateY(-3px);
-  opacity: 0.9;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* RESPONSIVE */
+/* 📱 --- MAGIA AQUÍ: ADAPTACIÓN TOTAL PARA CELULARES --- 📱 */
 @media (max-width: 600px) {
-  .hero-content { padding: 25px 15px; }
-  .grid-productos { grid-template-columns: 1fr; max-width: 280px; }
-  .navbar { padding: 15px; }
-  .nav-links a { margin: 0 5px; font-size: 0.65rem; letter-spacing: 1px; }
+  section { padding: 40px 15px; } /* Menos espacios vacíos */
+
+  h2 { font-size: 1.6rem; } /* Títulos más chicos */
+  
+  .hero-content { padding: 20px 15px; }
+  
+  /* Aquí forzamos a que salgan 2 columnas de fotos en celular */
+  .grid-productos { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; /* Separación más chiquita */
+    margin-top: 20px;
+  }
+  
+  /* Hacemos la tarjeta más compacta */
+  .luxury-card { 
+    padding: 5px; 
+  }
+  
+  .img-container { 
+    height: 160px; /* Fotos más chiquitas */
+  }
+  
+  .card-info h3 { 
+    font-size: 0.85rem; /* Letras pequeñas */
+    letter-spacing: 0px;
+  }
+  
+  .card-info .desc { 
+    font-size: 0.65rem; /* Descripciones cortas y chicas */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Corta el texto a 2 líneas para que no se desborde */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .price { 
+    font-size: 0.9rem; 
+    margin: 5px 0;
+  }
+  
+  .btn-buy { 
+    padding: 8px 10px; 
+    font-size: 0.6rem; 
+  }
+  
+  .badge {
+    font-size: 0.45rem;
+    padding: 3px 5px;
+  }
 }
