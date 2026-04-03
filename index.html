@@ -5,14 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="DsORyOwbKVoeZcPVeUh0nUi5b7VjpPdsYvudshUb3A4">
   <title>R. Ávalos | Cerámica</title>
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <header class="hero">
+  <header class="main-nav-bar">
+    <div class="nav-container">
+      
+      <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+      
+      <label for="menu-toggle" class="menu-trigger">
+        <span class="menu-label-mobile">Menu</span>
+      </label>
+      
+      <nav class="nav-menu-desktop">
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#productos">Shop All</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-center">
+        <a href="#inicio" class="nav-logo-text">R. ÁVALOS</a>
+      </div>
+
+      <div class="nav-right">
+        <a href="#" class="nav-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+      
+      <nav class="mobile-dropdown-menu">
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#productos">Shop All</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      
+    </div>
+  </header>
+
+  <header id="inicio" class="hero">
     <div class="hero-content">
-      <img src="images/logo.jpg" alt="Logo R. Ávalos" class="main-logo">
+      <img src="images/logo.webp" alt="Logo R. Ávalos" class="main-logo">
       <h1 class="brand-name">R. ÁVALOS</h1>
       <span class="subtitle">CERÁMICA ARTESANAL</span>
       <div class="line"></div>
@@ -34,7 +76,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/plato.jpg" alt="Plato de Autor">
+          <img src="images/plato.webp" alt="Plato de Autor">
           <div class="badge">Nuevo</div>
         </div>
         <div class="card-info">
@@ -47,7 +89,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/florero.jpg" alt="Florero Gala">
+          <img src="images/florero.webp" alt="Florero Gala">
         </div>
         <div class="card-info">
           <h3>Florero Gala</h3>
@@ -59,7 +101,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/botella-calavera.jpg" alt="Licorera Calavera">
+          <img src="images/botella-calavera.webp" alt="Licorera Calavera">
           <div class="badge">Única</div>
         </div>
         <div class="card-info">
@@ -72,7 +114,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/detallado.jpg" alt="Vaso Solar">
+          <img src="images/detallado.webp" alt="Vaso Solar">
         </div>
         <div class="card-info">
           <h3>Vaso Solar</h3>
@@ -84,7 +126,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/taza.jpg" alt="Taza Ancestral">
+          <img src="images/taza.webp" alt="Taza Ancestral">
         </div>
         <div class="card-info">
           <h3>Taza Ancestral</h3>
@@ -96,7 +138,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/craneo-azul.jpg" alt="Cráneo Cerámica">
+          <img src="images/craneo-azul.webp" alt="Cráneo Cerámica">
           <div class="badge">Única</div>
         </div>
         <div class="card-info">
@@ -109,7 +151,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/mezcalero.jpg" alt="Juego Mezcalero">
+          <img src="images/mezcalero.webp" alt="Juego Mezcalero">
           <div class="badge">Nuevo</div>
         </div>
         <div class="card-info">
@@ -122,7 +164,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/taza-gala.jpg" alt="Taza de Autor">
+          <img src="images/taza-gala.webp" alt="Taza de Autor">
         </div>
         <div class="card-info">
           <h3>Taza de Autor</h3>
@@ -134,7 +176,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/jarron-fuego.jpg" alt="Tibor Fuego">
+          <img src="images/jarron-fuego.webp" alt="Tibor Fuego">
           <div class="badge">Única</div>
         </div>
         <div class="card-info">
@@ -147,7 +189,7 @@
 
       <div class="luxury-card">
         <div class="img-container">
-          <img src="images/calavera-negra.jpg" alt="Set Mezcalero Calavera Negra">
+          <img src="images/calavera-negra.webp" alt="Set Mezcalero Calavera Negra">
           <div class="badge">Única</div>
         </div>
         <div class="card-info">

@@ -1,4 +1,4 @@
-/* VARIABLES DE DISEÑO (Azul marino) */
+/* VARIABLES DE DISEÑO */
 :root {
   --gold: #c5a059;
   --gold-glow: rgba(197, 160, 89, 0.3);
@@ -22,11 +22,109 @@ body {
   scroll-behavior: smooth;
 }
 
-.main-logo {
-  max-width: 120px;
-  height: auto;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+/* ENCABEZADO ESTILO JS CERAMICS - NO TE PERSIGUE */
+.main-nav-bar {
+  position: absolute; /* Cambiado para quedarse solo arriba */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 20px 0;
+}
+
+.nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  position: relative;
+}
+
+.menu-checkbox {
+  display: none;
+}
+
+/* Opciones en Mac */
+.nav-menu-desktop ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-menu-desktop a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nav-menu-desktop a:hover { color: var(--gold); }
+
+/* Gatillo en Celular */
+.menu-trigger {
+  display: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #111;
+}
+
+/* Centro (Logo) */
+.nav-center { text-align: center; }
+.nav-logo-text {
+  font-family: var(--font-luxury);
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+}
+
+/* Derecha (Carrito) */
+.nav-right { display: flex; justify-content: flex-end; }
+.nav-icon { 
+  text-decoration: none; 
+  color: #111; 
+  display: flex; 
+  align-items: center; 
+  gap: 5px;
+}
+.cart-count { font-size: 0.85rem; font-weight: 600; }
+
+/* Menú móvil desplegable */
+.mobile-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.mobile-dropdown-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  gap: 15px;
+}
+
+.mobile-dropdown-menu a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* HERO SECTION */
@@ -40,6 +138,7 @@ body {
   text-align: center;
   color: var(--dark-blue);
   padding: 20px;
+  padding-top: 100px; /* Ajuste para que el header no tape el contenido de inicio */
 }
 
 .hero-content {
@@ -51,6 +150,13 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   max-width: 600px;
   width: 100%;
+}
+
+.main-logo {
+  max-width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
 }
 
 .brand-name {
@@ -91,7 +197,7 @@ h2 {
 .info-section { background: var(--light); }
 .info-section .container { max-width: 700px; margin: auto; line-height: 1.9; font-size: 1.1rem; color: #444; }
 
-/* GRID DE PRODUCTOS DINÁMICO */
+/* GRID DE PRODUCTOS */
 .grid-productos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -267,8 +373,16 @@ footer {
 .social-btn.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 .social-btn.mail { background: #ea4335; } 
 
-/* 📱 --- ADAPTACIÓN PARA CELULARES --- 📱 */
-@media (max-width: 600px) {
+/* 📱 --- ADAPTACIÓN ESTILO JS CERAMICS --- 📱 */
+@media (max-width: 768px) {
+  .nav-menu-desktop { display: none; }
+  .menu-trigger { display: block; }
+  
+  /* Dropdown en móvil */
+  .menu-checkbox:checked ~ .mobile-dropdown-menu {
+    display: block;
+  }
+  
   section { padding: 50px 15px; }
 
   h2 { font-size: 1.8rem; }
@@ -280,7 +394,7 @@ footer {
   }
   
   .img-container {
-    height: 180px; /* Algo más cómodo de ver en celular */
+    height: 180px;
   }
   
   .card-info h3 { font-size: 0.9rem; }
