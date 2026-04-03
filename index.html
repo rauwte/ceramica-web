@@ -225,4 +225,15 @@
   </footer>
 
 </body>
+<script>
+    // Esto hace que el menú móvil se cierre solo al picarle a un enlace
+    const enlaces = document.querySelectorAll('.mobile-dropdown-menu a');
+    const toggle = document.getElementById('menu-toggle');
+
+    enlaces.forEach(enlace => {
+      enlace.addEventListener('click', () => {
+        toggle.checked = false;
+      });
+    });
+  </script>
 </html>
