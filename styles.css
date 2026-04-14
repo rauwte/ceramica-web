@@ -91,12 +91,25 @@ body {
 
 /* Derecha (Carrito) */
 .nav-right { display: flex; justify-content: flex-end; }
-.nav-icon { 
-  text-decoration: none; 
-  color: #111; 
-  display: flex; 
-  align-items: center; 
-  gap: 5px;
+.nav-whatsapp {
+  text-decoration: none;
+  color: #111;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-whatsapp:hover {
+  color: #25d366;
+}
+
+.nav-whatsapp svg {
+  flex-shrink: 0;
 }
 .cart-count { font-size: 0.85rem; font-weight: 600; }
 
