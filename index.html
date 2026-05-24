@@ -10,6 +10,63 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px auto 40px auto;
+      flex-wrap: wrap;
+      max-width: 800px;
+    }
+    .btn-filter {
+      background: transparent;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #666;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .btn-filter:hover, .btn-filter.active {
+      color: #c5a059;
+      border-bottom: 1px solid #c5a059;
+    }
+    /* Animación suave para cuando se ocultan/muestran las tarjetas */
+    .luxury-card, .section-maps-mini {
+      transition: all 0.4s ease-in-out;
+    }
+
+    /* Soporte responsivo dinámico para el botón de WhatsApp de la barra de navegación */
+    .nav-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .nav-whatsapp span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 768px) {
+      .nav-whatsapp span {
+        display: none !important; /* Oculta el texto en celulares */
+      }
+    }
+    @media (min-width: 769px) {
+      .nav-whatsapp span {
+        display: inline-block !important; /* Muestra el texto completo en Mac/Escritorio */
+      }
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,7 +91,7 @@
     <div class="nav-container">
       <input type="checkbox" id="menu-toggle" class="menu-checkbox">
       <label for="menu-toggle" class="menu-trigger">
-        <span class="menu-label-mobile">Menú</span>
+        <span class="menu-label-mobile">☰</span>
       </label>
       <nav class="nav-menu-desktop">
         <ul>
@@ -84,30 +141,27 @@
         Más de 20 años de experiencia en <strong>Dolores Hidalgo, Guanajuato</strong> — cuna de la independencia y de los grandes artesanos de México.
       </p>
       <p>
-        Lo que llega a tus manos no es un objeto. Es tiempo, oficio y tierra convertidos en forma.
+        Lo que llega a tus manos no es un objecto. Es tiempo, oficio y tierra convertidos en forma.
       </p>
     </div>
   </section>
 
   <section id="productos" class="catalog">
     <h2 class="section-title">Colección Exclusiva</h2>
-    <div class="grid-productos">
-      <div class="luxury-card">
-        <div class="img-container">
-          <img src="images/plato.webp" alt="Plato de cerámica artesanal de alta temperatura, hecho a mano en Dolores Hidalgo">
-          <div class="badge">Nuevo</div>
-        </div>
-        <div class="card-info">
-          <h3>Plato de Autor</h3>
-          <p class="desc">Cocido a más de 1,200°C. Cada trazo es irrepetible, cada pieza es la única de su kind.</p>
-          <p class="price">$250 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20adquirir%20el%20Plato%20de%20Autor." target="_blank">Adquirir</a>
-        </div>
-      </div>
+    
+    <div class="filter-container">
+      <button class="btn-filter active" data-filter="all">Todos</button>
+      <button class="btn-filter" data-filter="floreros">Floreros</button>
+      <button class="btn-filter" data-filter="sets">Licoreras y Sets</button>
+      <button class="btn-filter" data-filter="autor">Piezas de Autor</button>
+    </div>
 
-      <div class="luxury-card">
+    <div class="grid-productos" id="contenedor-productos">
+      
+      <div class="luxury-card" data-categoria="floreros">
         <div class="img-container">
           <img src="images/florero.webp" alt="Florero Gala de cerámica con acabado vitrificado en relieve, pieza única artesanal">
+          <div class="badge">Única</div>
         </div>
         <div class="card-info">
           <h3>Florero Gala</h3>
@@ -117,95 +171,46 @@
         </div>
       </div>
 
-      <div class="luxury-card">
+      <div class="luxury-card" data-categoria="floreros">
         <div class="img-container">
-          <img src="images/botella-calavera.webp" alt="Licorera calavera de cerámica artesanal, edición especial hecha a mano">
+          <img src="images/taza.webp" alt="Florero de gala estructurado en cerámica de alta temperatura, pieza artesanal exclusiva">
           <div class="badge">Única</div>
         </div>
         <div class="card-info">
-          <h3>Licorera Calavera</h3>
-          <p class="desc">Edición especial inspirada en la tradición mexicana. El mezcal merece un recipiente a su altura.</p>
-          <p class="price">$850 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20la%20Licorera%20Calavera%20de%20edición%20especial." target="_blank">Adquirir</a>
+          <h3>Florero Gala Estructurado</h3>
+          <p class="desc">Líneas firmes y simétricas moldeadas individualmente. Un diseño estilizado de gran formato ideal para interiores exigentes.</p>
+          <p class="price">$6,500 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Florero%20Gala%20Estructurado." target="_blank">Adquirir</a>
         </div>
       </div>
 
-      <div class="luxury-card">
+      <div class="luxury-card" data-categoria="floreros">
         <div class="img-container">
-          <img src="images/detallado.webp" alt="Vaso solar de cerámica artesanal con diseño geométrico en blanco y negro, hecho a mano">
-        </div>
-        <div class="card-info">
-          <h3>Vaso Solar</h3>
-          <p class="desc">Geometría prehispánica tallada a mano en blanco y negro. Arte que se usa todos los días.</p>
-          <p class="price">$200 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Vaso%20Solar." target="_blank">Adquirir</a>
-        </div>
-      </div>
-
-      <div class="luxury-card">
-        <div class="img-container">
-          <img src="images/taza.webp" alt="Taza ancestral de cerámica artesanal con grabado profundo y patrones tradicionales">
-        </div>
-        <div class="card-info">
-          <h3>Taza Ancestral</h3>
-          <p class="desc">Grabado profundo con patrones que evocan siglos de cultura. Tu café de la mañana, elevado.</p>
-          <p class="price">$300 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20la%20Taza%20Ancestral." target="_blank">Adquirir</a>
-        </div>
-      </div>
-
-      <div class="luxury-card">
-        <div class="img-container">
-          <img src="images/craneo-azul.webp" alt="Cráneo de cerámica artesanal con fusión de colores y relieve, pieza única de autor">
+          <img src="images/jarron-fuego.webp" alt="Florero Fuego, pieza monumental de cerámica artesanal con tonos rojizos vivos, edición única">
           <div class="badge">Única</div>
         </div>
         <div class="card-info">
-          <h3>Cráneo de Autor</h3>
-          <p class="desc">Fusión de esmaltes en relieve. Un símbolo de vida y tradición convertido en objeto de colección.</p>
-          <p class="price">$400 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Cráneo%20de%20Autor." target="_blank">Adquirir</a>
-        </div>
-      </div>
-
-      <div class="luxury-card">
-        <div class="img-container">
-          <img src="images/mezcalero.webp" alt="Set mezcalero artesanal de cerámica con licorera y tequileros hechos a mano en Guanajuato">
-          <div class="badge">Nuevo</div>
-        </div>
-        <div class="card-info">
-          <h3>Set Mezcalero</h3>
-          <p class="desc">Licorera, 3 tequileros y charola fina. El ritual del mezcal con la dignidad que merece.</p>
-          <p class="price">$1,010 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Set%20Mezcalero." target="_blank">Adquirir</a>
-        </div>
-      </div>
-
-      <div class="luxury-card">
-        <div class="img-container">
-          <img src="images/taza-gala.webp" alt="Taza de autor en cerámica artesanal con textura al tacto, hecha a mano">
-        </div>
-        <div class="card-info">
-          <h3>Taza de Autor</h3>
-          <p class="desc">Textura viva al tacto, forma que se adapta a la mano. Hecha para quien aprecia lo bien hecho.</p>
-          <p class="price">$300 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20la%20Taza%20de%20Autor." target="_blank">Adquirir</a>
-        </div>
-      </div>
-
-      <div class="luxury-card">
-        <div class="img-container">
-          <img src="images/jarron-fuego.webp" alt="Tibor Fuego, pieza monumental de cerámica artesanal para interiores, edición única">
-          <div class="badge">Única</div>
-        </div>
-        <div class="card-info">
-          <h3>Tibor Fuego</h3>
-          <p class="desc">Pieza monumental de presencia imponente. El fuego del horno quedó atrapado en su esmalte.</p>
+          <h3>Florero Fuego</h3>
+          <p class="desc">Pieza monumental de presencia imponente. Los tonos rojos vivos y el carácter del fuego quedaron atrapados en su esmalte vitrificado.</p>
           <p class="price">$899 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Tibor%20Fuego." target="_blank">Adquirir</a>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Florero%20Fuego." target="_blank">Adquirir</a>
         </div>
       </div>
 
-      <div class="luxury-card">
+      <div class="luxury-card" data-categoria="sets">
+        <div class="img-container">
+          <img src="images/detallado.webp" alt="Set de licorera fina de cerámica artesanal con 5 tequileros, hecho a mano en Dolores Hidalgo">
+          <div class="badge">Única</div>
+        </div>
+        <div class="card-info">
+          <h3>Set Licorera Imperial</h3>
+          <p class="desc">Elegante juego que incluye una licorera de diseño estilizado y 5 tequileros finos. Ideal para presidir las mejores reuniones.</p>
+          <p class="price">$1,450 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Set%20Licorera%20Imperial." target="_blank">Adquirir</a>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="sets">
         <div class="img-container">
           <img src="images/calavera-negra.webp" alt="Set licorera negra calavera de cerámica artesanal con tequileros finos, edición única">
           <div class="badge">Única</div>
@@ -217,10 +222,71 @@
           <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Set%20de%20Licorera%20Negra%20con%20Calavera." target="_blank">Adquirir</a>
         </div>
       </div>
+
+      <div class="luxury-card" data-categoria="sets">
+        <div class="img-container">
+          <img src="images/botella-calavera.webp" alt="Licorera calavera de cerámica artesanal, edición especial hecha a mano">
+        </div>
+        <div class="card-info">
+          <h3>Licorera Calavera</h3>
+          <p class="desc">Edición especial inspirada en la tradición mexicana. El mezcal merece un recipiente a su altura.</p>
+          <p class="price">$850 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20la%20Licorera%20Calavera%20de%20edición%20especial." target="_blank">Adquirir</a>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="sets">
+        <div class="img-container">
+          <img src="images/mezcalero.webp" alt="Set mezcalero artesanal de cerámica con licorera y tequileros hechos a mano en Guanajuato">
+        </div>
+        <div class="card-info">
+          <h3>Set Mezcalero</h3>
+          <p class="desc">Licorera, 3 tequileros y charola fina. El ritual del mezcal con la dignidad que merece.</p>
+          <p class="price">$1,010 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Set%20Mezcalero." target="_blank">Adquirir</a>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/plato.webp" alt="Plato de cerámica artesanal de alta temperatura, hecho a mano en Dolores Hidalgo">
+        </div>
+        <div class="card-info">
+          <h3>Plato de Autor</h3>
+          <p class="desc">Cocido a más de 1,200°C. Cada trazo es irrepetible, cada pieza es la única de su tipo.</p>
+          <p class="price">$250 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20adquirir%20el%20Plato%20de%20Autor." target="_blank">Adquirir</a>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/taza-gala.webp" alt="Taza de autor en cerámica artesanal con textura al tacto, hecha a mano">
+        </div>
+        <div class="card-info">
+          <h3>Taza de Autor</h3>
+          <p class="desc">Textura viva al tacto, forma que se adapta a la mano. Hecha para quien aprecia lo bien hecho.</p>
+          <p class="price">$300 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20la%20Taza%20de%20Autor." target="_blank">Adquirir</a>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/craneo-azul.webp" alt="Cráneo de cerámica artesanal con fusión de colores y relieve, pieza única de autor">
+        </div>
+        <div class="card-info">
+          <h3>Cráneo de Autor</h3>
+          <p class="desc">Fusión de esmaltes en relieve. Un símbolo de vida y tradición convertido en objeto de colección.</p>
+          <p class="price">$400 MXN</p>
+          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Cráneo%20de%20Autor." target="_blank">Adquirir</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <section id="visitanos" class="section-maps-mini">
+  <section id="visitanos" class="section-maps-mini" data-categoria="all">
     <div class="maps-mini-card">
       <div class="map-container">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.143242279148!2d-100.88443!3d21.14234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b39f727877e8d%3A0x6d9f3f9f9f9f9f9f!2sR.%20Avalos%20Cer%C3%A1micos!5e0!3m2!1ses-419!2smx!4v1713665000000!5m2!1ses-419!2smx" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -255,11 +321,44 @@
   </footer>
 
   <script>
+    // 1. Cerrar el menú desplegable en móvil al hacer click
     const enlaces = document.querySelectorAll('.mobile-dropdown-menu a, .nav-menu-desktop a');
     const toggle = document.getElementById('menu-toggle');
     enlaces.forEach(enlace => {
       enlace.addEventListener('click', () => {
         toggle.checked = false;
+      });
+    });
+
+    // 2. FILTRADO DINÁMICO (Súper estético para Mac y Escritorio)
+    const botones = document.querySelectorAll('.btn-filter');
+    const tarjetas = document.querySelectorAll('.luxury-card, .section-maps-mini');
+
+    botones.forEach(boton => {
+      boton.addEventListener('click', () => {
+        // Cambiar botón activo
+        botones.forEach(b => b.classList.remove('active'));
+        boton.classList.add('active');
+
+        const filtro = boton.getAttribute('data-filter');
+
+        tarjetas.forEach(tarjeta => {
+          const categoria = tarjeta.getAttribute('data-categoria');
+          
+          if (filtro === 'all' || categoria === filtro || categoria === 'all') {
+            tarjeta.style.display = 'flex';
+            setTimeout(() => {
+              tarjeta.style.opacity = '1';
+              tarjeta.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            tarjeta.style.opacity = '0';
+            tarjeta.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              tarjeta.style.display = 'none';
+            }, 300); // Espera que termine la animación
+          }
+        });
       });
     });
   </script>
