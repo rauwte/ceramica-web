@@ -18,7 +18,7 @@
       gap: 15px;
       margin: 20px auto 40px auto;
       flex-wrap: wrap;
-      max-width: 800px;
+      max-width: 950px;
     }
     .btn-filter {
       background: transparent;
@@ -37,12 +37,10 @@
       color: #c5a059;
       border-bottom: 1px solid #c5a059;
     }
-    /* Animación suave para cuando se ocultan/muestran las tarjetas */
-    .luxury-card, .section-maps-mini {
+    .luxury-card {
       transition: all 0.4s ease-in-out;
     }
 
-    /* Soporte responsivo dinámico para el botón de WhatsApp de la barra de navegación */
     .nav-whatsapp {
       display: flex;
       align-items: center;
@@ -57,13 +55,56 @@
     }
     @media (max-width: 768px) {
       .nav-whatsapp span {
-        display: none !important; /* Oculta el texto en celulares */
+        display: none !important;
       }
     }
     @media (min-width: 769px) {
       .nav-whatsapp span {
-        display: inline-block !important; /* Muestra el texto completo en Mac/Escritorio */
+        display: inline-block !important;
       }
+    }
+
+    .luxury-card .img-container img {
+      cursor: zoom-in;
+    }
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .lightbox-modal.active {
+      display: flex;
+    }
+    .lightbox-modal img {
+      max-width: 90%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: 300;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: color 0.3s;
+    }
+    .lightbox-close:hover {
+      color: #c5a059;
     }
   </style>
 
@@ -104,7 +145,7 @@
       <div class="nav-center">
         <a href="#inicio" class="nav-logo-text">R. ÁVALOS</a>
       </div>
-      <div class="nav-right">
+      <div class="nav-right" style="display: flex; align-items: center; gap: 10px;">
         <a href="https://wa.me/524181187377?text=Hola,%20vi%20tu%20catálogo%20en%20línea%20y%20me%20gustaría%20solicitar%20información." target="_blank" class="nav-whatsapp">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.428a.5.5 0 0 0 .609.601l5.79-1.516A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 0 1-5.031-1.371l-.361-.214-3.737.979.997-3.645-.235-.374A9.862 9.862 0 0 1 2.1 12C2.1 6.533 6.533 2.1 12 2.1c5.467 0 9.9 4.433 9.9 9.9 0 5.467-4.433 9.9-9.9 9.9z"/></svg>
           <span>WhatsApp</span>
@@ -141,7 +182,7 @@
         Más de 20 años de experiencia en <strong>Dolores Hidalgo, Guanajuato</strong> — cuna de la independencia y de los grandes artesanos de México.
       </p>
       <p>
-        Lo que llega a tus manos no es un objecto. Es tiempo, oficio y tierra convertidos en forma.
+        Lo que llega a tus manos no es un objeto. Es tiempo, oficio y tierra convertidos en forma.
       </p>
     </div>
   </section>
@@ -150,76 +191,63 @@
     <h2 class="section-title">Colección Exclusiva</h2>
     
     <div class="filter-container">
-      <button class="btn-filter active" data-filter="all">Todos</button>
-      <button class="btn-filter" data-filter="floreros">Floreros</button>
+      <button class="btn-filter active" data-filter="floreros">Floreros</button>
       <button class="btn-filter" data-filter="sets">Licoreras y Sets</button>
+      <button class="btn-filter" data-filter="tequileros">Tequileros</button>
+      <button class="btn-filter" data-filter="tazas">Tazas</button>
       <button class="btn-filter" data-filter="autor">Piezas de Autor</button>
     </div>
 
     <div class="grid-productos" id="contenedor-productos">
       
+      <!-- LOS 11 PRODUCTOS ORIGINALES -->
       <div class="luxury-card" data-categoria="floreros">
         <div class="img-container">
           <img src="images/florero.webp" alt="Florero Gala de cerámica con acabado vitrificado en relieve, pieza única artesanal">
-          <div class="badge">Única</div>
         </div>
         <div class="card-info">
           <h3>Florero Gala</h3>
           <p class="desc">Acabado vitrificado a mano con relieve escultural. Presencia que transforma cualquier espacio.</p>
-          <p class="price">$6,000 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Florero%20Gala." target="_blank">Adquirir</a>
         </div>
       </div>
 
       <div class="luxury-card" data-categoria="floreros">
         <div class="img-container">
           <img src="images/taza.webp" alt="Florero de gala estructurado en cerámica de alta temperatura, pieza artesanal exclusiva">
-          <div class="badge">Única</div>
         </div>
         <div class="card-info">
           <h3>Florero Gala Estructurado</h3>
           <p class="desc">Líneas firmes y simétricas moldeadas individualmente. Un diseño estilizado de gran formato ideal para interiores exigentes.</p>
-          <p class="price">$6,500 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Florero%20Gala%20Estructurado." target="_blank">Adquirir</a>
         </div>
       </div>
 
       <div class="luxury-card" data-categoria="floreros">
         <div class="img-container">
           <img src="images/jarron-fuego.webp" alt="Florero Fuego, pieza monumental de cerámica artesanal con tonos rojizos vivos, edición única">
-          <div class="badge">Única</div>
         </div>
         <div class="card-info">
           <h3>Florero Fuego</h3>
           <p class="desc">Pieza monumental de presencia imponente. Los tonos rojos vivos y el carácter del fuego quedaron atrapados en su esmalte vitrificado.</p>
-          <p class="price">$899 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Florero%20Fuego." target="_blank">Adquirir</a>
         </div>
       </div>
 
       <div class="luxury-card" data-categoria="sets">
         <div class="img-container">
           <img src="images/detallado.webp" alt="Set de licorera fina de cerámica artesanal con 5 tequileros, hecho a mano en Dolores Hidalgo">
-          <div class="badge">Única</div>
         </div>
         <div class="card-info">
           <h3>Set Licorera Imperial</h3>
           <p class="desc">Elegante juego que incluye una licorera de diseño estilizado y 5 tequileros finos. Ideal para presidir las mejores reuniones.</p>
-          <p class="price">$1,450 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Set%20Licorera%20Imperial." target="_blank">Adquirir</a>
         </div>
       </div>
 
       <div class="luxury-card" data-categoria="sets">
         <div class="img-container">
           <img src="images/calavera-negra.webp" alt="Set licorera negra calavera de cerámica artesanal con tequileros finos, edición única">
-          <div class="badge">Única</div>
         </div>
         <div class="card-info">
           <h3>Licorera Negra</h3>
           <p class="desc">Negro profundo, calavera imponente. Set de licorera y 2 tequileros para ocasiones que se recuerdan.</p>
-          <p class="price">$1,200 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Set%20de%20Licorera%20Negra%20con%20Calavera." target="_blank">Adquirir</a>
         </div>
       </div>
 
@@ -230,8 +258,6 @@
         <div class="card-info">
           <h3>Licorera Calavera</h3>
           <p class="desc">Edición especial inspirada en la tradición mexicana. El mezcal merece un recipiente a su altura.</p>
-          <p class="price">$850 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20la%20Licorera%20Calavera%20de%20edición%20especial." target="_blank">Adquirir</a>
         </div>
       </div>
 
@@ -242,8 +268,6 @@
         <div class="card-info">
           <h3>Set Mezcalero</h3>
           <p class="desc">Licorera, 3 tequileros y charola fina. El ritual del mezcal con la dignidad que merece.</p>
-          <p class="price">$1,010 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Set%20Mezcalero." target="_blank">Adquirir</a>
         </div>
       </div>
 
@@ -254,39 +278,166 @@
         <div class="card-info">
           <h3>Plato de Autor</h3>
           <p class="desc">Cocido a más de 1,200°C. Cada trazo es irrepetible, cada pieza es la única de su tipo.</p>
-          <p class="price">$250 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20adquirir%20el%20Plato%20de%20Autor." target="_blank">Adquirir</a>
         </div>
       </div>
 
-      <div class="luxury-card" data-categoria="autor">
+      <!-- TAZA DE AUTOR COLOCADA EXACTAMENTE EN EL ÁREA DE TAZAS -->
+      <div class="luxury-card" data-categoria="tazas">
         <div class="img-container">
           <img src="images/taza-gala.webp" alt="Taza de autor en cerámica artesanal con textura al tacto, hecha a mano">
         </div>
         <div class="card-info">
           <h3>Taza de Autor</h3>
           <p class="desc">Textura viva al tacto, forma que se adapta a la mano. Hecha para quien aprecia lo bien hecho.</p>
-          <p class="price">$300 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20la%20Taza%20de%20Autor." target="_blank">Adquirir</a>
         </div>
       </div>
 
-      <div class="luxury-card" data-categoria="autor">
+      <!-- CRÁNEO DE AUTOR COLOCADO EXACTAMENTE EN LICORERAS Y SETS -->
+      <div class="luxury-card" data-categoria="sets">
         <div class="img-container">
           <img src="images/craneo-azul.webp" alt="Cráneo de cerámica artesanal con fusión de colores y relieve, pieza única de autor">
         </div>
         <div class="card-info">
           <h3>Cráneo de Autor</h3>
           <p class="desc">Fusión de esmaltes en relieve. Un símbolo de vida y tradición convertido en objeto de colección.</p>
-          <p class="price">$400 MXN</p>
-          <a class="btn-buy" href="https://wa.me/524181187377?text=Hola,%20me%20interesa%20el%20Cráneo%20de%20Autor." target="_blank">Adquirir</a>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="sets">
+        <div class="img-container">
+          <img src="images/licoreracraneo.webp" alt="Licorera Cráneo de cerámica artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Licorera Cráneo</h3>
+          <p class="desc">Acabado vitrificado a mano con relieve escultural. Presencia que transforma cualquier espacio.</p>
+        </div>
+      </div>
+
+      <!-- NUEVOS PRODUCTOS ADICIONALES -->
+      <div class="luxury-card" data-categoria="sets">
+        <div class="img-container">
+          <img src="images/craneocincel.webp" alt="Cráneo Cincel de cerámica artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Licorera Cráneo Cincel</h3>
+          <p class="desc">Líneas firmes y simétricas moldeadas individualmente. Un diseño estilizado de gran formato ideal para interiores exigentes.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="tequileros">
+        <div class="img-container">
+          <img src="images/tequilerofacil.webp" alt="Tequilero Fácil artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Tequilero Inicial</h3>
+          <p class="desc">Elegante juego que incluye una licorera de diseño estilizado y tequileros finos. Ideal para presidir las mejores reuniones.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="tequileros">
+        <div class="img-container">
+          <img src="images/tequilerofuego.webp" alt="Tequilero Fuego artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Tequilero Fuego</h3>
+          <p class="desc">Negro profundo, calavera imponente. Set de licorera y tequileros para ocasiones que se recuerdan.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="tazas">
+        <div class="img-container">
+          <img src="images/tazadecorado.webp" alt="Taza Decorado artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Taza Decorado</h3>
+          <p class="desc">Edición especial inspirada en la tradición mexicana. El mezcal merece un recipiente a su altura.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/vasofuego.webp" alt="Vaso Fuego artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Vaso Fuego</h3>
+          <p class="desc">Licorera, tequileros y charola fina. El ritual del mezcal con la dignidad que merece.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/cenicerocuadrado.webp" alt="Cenicero Cuadrado artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Cenicero Cuadrado</h3>
+          <p class="desc">Cocido a más de 1,200°C. Cada trazo es irrepetible, cada pieza es la única de su tipo.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="tazas">
+        <div class="img-container">
+          <img src="images/tazafacil.webp" alt="Taza Fácil artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Taza Inicial</h3>
+          <p class="desc">Textura viva al tacto, forma que se adapta a la mano. Hecha para quien aprecia lo bien hecho.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/platonegro.webp" alt="Plato Negro artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Plato Negro</h3>
+          <p class="desc">Fusión de esmaltes en relieve. Un símbolo de vida y tradición convertido en objeto de colección.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/ceniceroredondo.webp" alt="Cenicero Redondo artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Cenicero Redondo</h3>
+          <p class="desc">Diseño equilibrado y elegante, moldeado para destacar con sutileza en cualquier espacio.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="autor">
+        <div class="img-container">
+          <img src="images/tintero.webp" alt="Tintero artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Tintero</h3>
+          <p class="desc">Tradición e historia en una pieza de formato compacto con acabados texturizados a mano.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="tequileros">
+        <div class="img-container">
+          <img src="images/tequileroblanco.webp" alt="Tequilero Cortado artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Tequilero Cortado</h3>
+          <p class="desc">Corte preciso y ergonómico que aporta modernidad al menaje tradicional de alta temperatura.</p>
+        </div>
+      </div>
+
+      <div class="luxury-card" data-categoria="tequileros">
+        <div class="img-container">
+          <img src="images/tequileronegro.webp" alt="Tequilero Negro artesanal">
+        </div>
+        <div class="card-info">
+          <h3>Tequilero Negro</h3>
+          <p class="desc">Acabado mate profundo que realza el minimalismo y la sobriedad en cada brindis.</p>
         </div>
       </div>
 
     </div>
   </section>
 
-  <section id="visitanos" class="section-maps-mini" data-categoria="all">
+  <section id="visitanos" class="section-maps-mini">
     <div class="maps-mini-card">
       <div class="map-container">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.143242279148!2d-100.88443!3d21.14234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b39f727877e8d%3A0x6d9f3f9f9f9f9f9f!2sR.%20Avalos%20Cer%C3%A1micos!5e0!3m2!1ses-419!2smx!4v1713665000000!5m2!1ses-419!2smx" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -320,23 +471,58 @@
     </div>
   </footer>
 
+  <div class="lightbox-modal" id="lightboxModal">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img id="lightboxImg" src="" alt="Vista ampliada de la pieza de cerámica">
+  </div>
+
   <script>
-    // 1. Cerrar el menú desplegable en móvil al hacer click
+    window.addEventListener('DOMContentLoaded', () => {
+      const contenedor = document.getElementById('contenedor-productos');
+      const tarjetasArray = Array.from(contenedor.querySelectorAll('.luxury-card'));
+      tarjetasArray.sort(() => Math.random() - 0.5);
+      tarjetasArray.forEach(tarjeta => contenedor.appendChild(tarjeta));
+
+      const primerBoton = document.querySelector('.btn-filter');
+      if (primerBoton) {
+        primerBoton.classList.add('active');
+        const filtroInicial = primerBoton.getAttribute('data-filter');
+        const tarjetas = document.querySelectorAll('.luxury-card');
+        tarjetas.forEach(tarjeta => {
+          const categoria = tarjeta.getAttribute('data-categoria');
+          if (categoria === filtroInicial) {
+            tarjeta.style.display = 'flex';
+            tarjeta.style.opacity = '1';
+            tarjeta.style.transform = 'scale(1)';
+          } else {
+            tarjeta.style.display = 'none';
+            tarjeta.style.opacity = '0';
+            tarjeta.style.transform = 'scale(0.95)';
+          }
+        });
+      }
+    });
+
     const enlaces = document.querySelectorAll('.mobile-dropdown-menu a, .nav-menu-desktop a');
     const toggle = document.getElementById('menu-toggle');
     enlaces.forEach(enlace => {
-      enlace.addEventListener('click', () => {
+      enlace.addEventListener('click', (e) => {
+        const href = enlace.getAttribute('href');
+        if (href === '#visitanos') {
+          e.preventDefault();
+          const visitanosSec = document.getElementById('visitanos');
+          visitanosSec.style.display = 'block';
+          visitanosSec.scrollIntoView({ behavior: 'smooth' });
+        }
         toggle.checked = false;
       });
     });
 
-    // 2. FILTRADO DINÁMICO (Súper estético para Mac y Escritorio)
     const botones = document.querySelectorAll('.btn-filter');
-    const tarjetas = document.querySelectorAll('.luxury-card, .section-maps-mini');
+    const tarjetas = document.querySelectorAll('.luxury-card');
 
     botones.forEach(boton => {
       boton.addEventListener('click', () => {
-        // Cambiar botón activo
         botones.forEach(b => b.classList.remove('active'));
         boton.classList.add('active');
 
@@ -345,7 +531,7 @@
         tarjetas.forEach(tarjeta => {
           const categoria = tarjeta.getAttribute('data-categoria');
           
-          if (filtro === 'all' || categoria === filtro || categoria === 'all') {
+          if (categoria === filtro) {
             tarjeta.style.display = 'flex';
             setTimeout(() => {
               tarjeta.style.opacity = '1';
@@ -356,10 +542,41 @@
             tarjeta.style.transform = 'scale(0.95)';
             setTimeout(() => {
               tarjeta.style.display = 'none';
-            }, 300); // Espera que termine la animación
+            }, 300);
           }
         });
       });
+    });
+
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('lightboxClose');
+    const imagenesProductos = document.querySelectorAll('.luxury-card img');
+
+    imagenesProductos.forEach(img => {
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      });
+    });
+
+    const cerrarModal = () => {
+      modal.classList.remove('active');
+      modalImg.src = '';
+    };
+
+    closeBtn.addEventListener('click', cerrarModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        cerrarModal();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        cerrarModal();
+      }
     });
   </script>
 
